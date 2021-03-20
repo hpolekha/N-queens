@@ -1,0 +1,124 @@
+html, body {
+    height: 100%;
+}
+
+input[type="text"] {
+    width: 150px;
+    /* width: 250px; */
+}
+
+#boardContainer1, #boardContainer2 {
+    width: 400px;
+    height: 400px;
+    /* width: 496px;
+    height: 496px; */
+    position: relative;
+    float: left;
+    margin: 8px 5px;
+}
+
+/* #chessBoardContainer {
+    position: relative;
+    float: left;
+} */
+#algorithmInfoContaineer{
+    padding: 7px;
+}
+#simulatedAnnealingContainer,#localBeamContainer, #geneticContainer{
+    display: none;
+}
+
+
+img {
+    position: absolute;
+}
+
+* {
+    font-size: 20px;
+    display: block;
+}
+.centerDiv{
+    display: flex;
+	align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 995px) {
+    #chessBoardContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+  }
+
+#mainContainer {
+    margin-top: 45px;
+}
+
+#algorithmInfoContaineer div {
+    /* centerDiv class */
+    display: none;
+	align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+#algorithmInfoContaineer div.visibleAlg {
+    /* centerDiv class */
+    display: flex;
+}
+
+/* do it */
+#my-btn {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    transition: 0.5s;
+}
+#my-btn:hover {
+    transform: scale(1.1, 1.1);
+    color: rgb(116, 236, 228);
+}
+
+
+#algorithmInfoContaineer {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    /* background-color: rgb(250, 221, 142); */
+    background-color: coral;
+    /* background-image: linear-gradient(45deg, rgb(255, 127, 80), rgb(255, 182, 155)); */
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Charm';
+}
+
+hr {
+   width: 50%;
+}
+
+#mainRow {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#info {
+    border-bottom: 3px solid snow;
+    font-size: 23px;
+}
+
+* {
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
