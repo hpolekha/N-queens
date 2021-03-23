@@ -11,3 +11,8 @@ After downloading the project run the *index.html* file in your browser to launc
 
 ### Interface
 The interface of this project allows studying the behaviour of the algorithms by changing their parameters.
+
+![picture](img/interface/genetic.jpg)
+![picture](img/interface/hillClimbing.jpg)
+![picture](img/interface/localBeam.jpg)
+![picture](img/interface/simulatedAnnealing.jpg)
