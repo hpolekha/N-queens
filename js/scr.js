@@ -29,18 +29,15 @@ window.onload = function () {
     }
 
     function showDiv(el) {
-      //   el.style.visibility = "visible";
       el.classList.remove("opacity");
     }
     printCost = !!document.getElementById("logInfo").checked ? true : false;
     document.getElementById("info").textContent = "Solving...";
     document.getElementById("time").textContent = "";
     let boards = document.getElementById("chessBoardContainer");
-    // boards.style.visibility = "hidden";
     hideDiv(boards);
     setTimeout(() => {
       Calculte();
-      //   boards.style.visibility = "visible";
       showDiv(boards);
     }, 300);
   });
@@ -82,6 +79,7 @@ window.onload = function () {
         localBeamContainer.style.display = "flex";
         break;
       case "genetic-algorithm":
+        document.getElementById('maxAttempts').value = 1000;
         geneticContainer.style.display = "flex";
         break;
     }
@@ -120,7 +118,7 @@ function Calculte() {
       startingTemperature = document.getElementById(
         "startingTemperature"
       ).value;
-      coolingFactor = document.getElementById("coolingFactor").value;
+      let coolingFactor = document.getElementById("coolingFactor").value;
       start = performance.now();
       [result, cost] = simulatedAnnealing(
         N,

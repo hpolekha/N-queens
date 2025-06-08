@@ -67,7 +67,7 @@
                 type="range"
                 id="cellsInRow"
                 min="4"
-                max="50"
+                max="25"
                 value="9"
                 style="margin-bottom: 5px; width: 60%"
               />
@@ -94,7 +94,7 @@
                 id="startingTemperature"
                 type="number"
                 min="0"
-                value="10000"
+                value="1000"
                 class="form-control"
               />
 
@@ -103,7 +103,8 @@
                 id="coolingFactor"
                 type="number"
                 min="1"
-                value="1"
+                value="2.0"
+                step="0.1"
                 class="form-control"
               />
             </div>
@@ -123,7 +124,7 @@
                 id="sizeOfGeneration"
                 type="number"
                 min="1"
-                value="100"
+                value="300"
                 class="form-control"
               />
 
@@ -141,7 +142,7 @@
                 id="crossoverProbability"
                 type="number"
                 min="1"
-                value="35"
+                value="70"
                 class="form-control"
               />
 
@@ -150,17 +151,17 @@
                 id="mutationProbability"
                 type="number"
                 min="1"
-                value="5"
+                value="10"
                 class="form-control"
               />
 
-              <label for="nrOfGenerations">Number of generations:</label>
+              <label for="nrOfGenerations" class="d-none">Number of generations:</label>
               <input
                 id="nrOfGenerations"
                 type="number"
                 min="1"
                 value="1000"
-                class="form-control"
+                class="form-control d-none"
               />
             </div>
 
@@ -188,5 +189,13 @@
                 </div> -->
       </div>
     </div>
+    <script>
+      document.querySelector('.logInfoWrapp label').addEventListener('click', function (e) {
+        e.preventDefault();
+        const checkbox = document.getElementById("logInfo");
+        checkbox.checked = !checkbox.checked;  // Toggle checkbox state
+    });
+
+    </script>
   </body>
 </html>

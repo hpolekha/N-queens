@@ -103,21 +103,20 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
     let lastBest = curPopulation[0].totalHeuristicCost;
 
 
+    if (printCost) {console.log(`[${curNumOfAttempts}] Current best cost: ${Math.min(...curPopulation.map(s => s.totalHeuristicCost))}`);}
+
     while (curNumOfAttempts < maxNumOfAttempts) {
 
         // Sort population with respect to heuristic
         curPopulation.sort(function (A, B) {
             return A.totalHeuristicCost - B.totalHeuristicCost;
         });
-        if (printCost) {console.log(`[${curNumOfAttempts}] Current best cost: ${curPopulation[0].totalHeuristicCost}`);}
 
-        // console.log(curPopulation[0].totalHeuristicCost);
 
         // Check if the solution was found
         if (curPopulation[0].totalHeuristicCost == 0) {
             document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
             console.log("Success. Used attempts: " + curNumOfAttempts);
-            // console.log('success return heuristic: ' + curPopulation[0].totalHeuristicCost);
             return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];
         }
 
@@ -175,6 +174,10 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
                 newPopulation.push(mutatedChildren[1]);
 
         }
+        if (printCost) {
+            let curMin = Math.min(...newPopulation.map(s => s.totalHeuristicCost));
+            if (curMin < curPopulation[0].totalHeuristicCost) console.log(`[${curNumOfAttempts+1}] Current best cost: ${curMin}`);
+        }
         curPopulation = newPopulation;
         ++curNumOfAttempts;
     }
@@ -183,8 +186,6 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
     curPopulation.sort(function (A, B) {
         return A.totalHeuristicCost - B.totalHeuristicCost;
     });
-
-    if (printCost) {console.log(`[${curNumOfAttempts}] Current best cost: ${curPopulation[0].totalHeuristicCost}`);}
 
     document.getElementById("info").innerHTML = '<span class="wrong">Not enough attempts</span>';
     console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);

@@ -26,10 +26,12 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates, printCost = false) {
     }
 
     
-    while ( curNumOfAttempts < maxNumOfAttempts) {
-        if (printCost) { console.log(`[${curNumOfAttempts}] Current cost: ${Math.max(...curStates.map(state  => state.totalHeuristicCost))}`);}
-        for (let index = 0; index < curStates.length; index++) {
+    if (printCost) { console.log(`[${curNumOfAttempts}] Current cost: ${Math.min(...curStates.map(state  => state.totalHeuristicCost))}`);}
 
+    while ( curNumOfAttempts < maxNumOfAttempts) {
+        let prevMin = Math.min(...curStates.map(s=> s.totalHeuristicCost));
+
+        for (let index = 0; index < curStates.length; index++) {
             // Copy current state and make the best move 
             newState = new State(N, curStates[index].board);
             newState.selectBestAndMakeMove();  
@@ -47,9 +49,13 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates, printCost = false) {
                 curStates[index] = newState;
             } 
         }
+        
+        if (printCost) { 
+            let curMin = Math.min(...curStates.map(state  => state.totalHeuristicCost));
+            if(curMin < prevMin) console.log(`[${curNumOfAttempts+1}] Current cost: ${curMin}`);
+        }
          ++curNumOfAttempts;
     };
-    if (printCost) { console.log(`[${curNumOfAttempts}] Current cost: ${Math.max(...curStates.map(state  => state.totalHeuristicCost))}`);}
 
 
     // Find the closest state to the solutions (the one with miimum heuritic)
@@ -79,7 +85,3 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates, printCost = false) {
     drawQueens1((copyOfInicializedStates[closestStateToSolution[1]]).board, N, (copyOfInicializedStates[closestStateToSolution[1]]).totalHeuristicCost);
     return [closestStateToSolution[0].board, closestStateToSolution[0].totalHeuristicCost];
 }
-
-
-
-
