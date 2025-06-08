@@ -1,8 +1,10 @@
 //
 // Genetic agorithm
 //
-function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfElitism, crossoverProbability, mutationProbability, nrOfGenerations) {
+function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfElitism, crossoverProbability, mutationProbability, nrOfGenerations, printCost = false) {
    
+    if (printCost) { console.log(`Genetic ${N}x${N}`);}
+
     // Roulette Selection 
     let select = function (population) {
         let selectedChromosomes = [];
@@ -107,14 +109,15 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
         curPopulation.sort(function (A, B) {
             return A.totalHeuristicCost - B.totalHeuristicCost;
         });
+        if (printCost) {console.log(`[${curNumOfAttempts}] Current best cost: ${curPopulation[0].totalHeuristicCost}`);}
 
-        console.log(curPopulation[0].totalHeuristicCost);
+        // console.log(curPopulation[0].totalHeuristicCost);
 
         // Check if the solution was found
         if (curPopulation[0].totalHeuristicCost == 0) {
             document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
             console.log("Success. Used attempts: " + curNumOfAttempts);
-            console.log('success return heuristic: ' + curPopulation[0].totalHeuristicCost);
+            // console.log('success return heuristic: ' + curPopulation[0].totalHeuristicCost);
             return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];
         }
 
@@ -180,6 +183,8 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
     curPopulation.sort(function (A, B) {
         return A.totalHeuristicCost - B.totalHeuristicCost;
     });
+
+    if (printCost) {console.log(`[${curNumOfAttempts}] Current best cost: ${curPopulation[0].totalHeuristicCost}`);}
 
     document.getElementById("info").innerHTML = '<span class="wrong">Not enough attempts</span>';
     console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);

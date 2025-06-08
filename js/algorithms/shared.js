@@ -1,5 +1,5 @@
 class State{
-    constructor(n,board){
+    constructor(n, board){
         this.N = n;
         this.board = this.CloneBoard(board);
         this.totalHeuristicCost = this.getHeuristicValue();
@@ -130,7 +130,6 @@ class State{
         }
 
         // If there are multiple global minimums choose randomly 
-        // realy?
         if (localMins.length > 1) {
             localMin = localMins[Math.floor(Math.random() * localMins.length)]
         }
@@ -164,10 +163,6 @@ class State{
     selectRandomAndMakeMove = function () {
         let random = this.selectRandom();
         this.moveQueen(random[0], random[1]);
-    }
-    
-    hello = function () {
-        alert('Hello');
     }
 
 }

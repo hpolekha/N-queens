@@ -1,7 +1,9 @@
 //
 // Simulated Annealing
 //
-function simulatedAnnealing(N, maxNumOfAttempts, startingTemperature, coolingFactor){
+function simulatedAnnealing(N, maxNumOfAttempts, startingTemperature, coolingFactor, printCost = false){
+    if (printCost) { console.log(`Simulated annealing ${N}x${N}`);}
+    
     let curNumOfAttempts = 0;
 
     // Generate start state
@@ -15,7 +17,11 @@ function simulatedAnnealing(N, maxNumOfAttempts, startingTemperature, coolingFac
         return [curState.board, curState.totalHeuristicCost];
     }
 
+    let temperature = startingTemperature;
+
     while (curState.totalHeuristicCost != 0 && curNumOfAttempts < maxNumOfAttempts) {
+        if (printCost) {console.log(`[${curNumOfAttempts}] Current cost: ${curState.totalHeuristicCost}`);}
+
         // Copy current state and make random move
         let newState = new State(N, curState.board);
         newState.selectRandomAndMakeMove();
@@ -23,12 +29,13 @@ function simulatedAnnealing(N, maxNumOfAttempts, startingTemperature, coolingFac
         // Accept the new move if itis better of with some probability
         if (newState.totalHeuristicCost < curState.totalHeuristicCost) {
             curState = newState;
-        } else if (startingTemperature > 0 && Math.random() <  (Math.exp((-Math.abs(newState.totalHeuristicCost - curState.totalHeuristicCost))/startingTemperature ))) {
+        } else if (temperature > 0 && Math.random() <  (Math.exp((-Math.abs(newState.totalHeuristicCost - curState.totalHeuristicCost))/temperature ))) {
             curState = newState;
         } 
-        startingTemperature = startingTemperature - coolingFactor;
+        temperature = temperature - coolingFactor;
         ++curNumOfAttempts;     
     }
+    if (printCost) { console.log(`[${curNumOfAttempts}] Current cost: ${curState.totalHeuristicCost}`);}
 
     // Show result
     if (curState.totalHeuristicCost == 0) {

@@ -247,3 +247,15 @@ nav {
     color: crimson;
     /* font-weight: 500; */
 }
+
+.logInfoWrapp {
+
+  display: block;
+}
+.logInfoWrapp label {
+  font-size: 0.85em;
+}
+.logInfoWrapp .form-check-input {
+  transform: scale(1.5);
+  margin-top: .4rem;
+}

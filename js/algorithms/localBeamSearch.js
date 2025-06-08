@@ -1,7 +1,9 @@
 //
 // Local Beam Search
 //
-function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
+function localBeamSearch(N, maxNumOfAttempts, nrOfStates, printCost = false) {
+    if (printCost) { console.log(`Greedy local beam search ${N}x${N}`);}
+
     let curNumOfAttempts = 0;
 
     // Generate start states
@@ -21,10 +23,11 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
     let copyOfInicializedStates = [];
     for (let index = 0; index < curStates.length; index++) {
        copyOfInicializedStates.push(new State(N,  curStates[index].board));
-        }
+    }
 
     
     while ( curNumOfAttempts < maxNumOfAttempts) {
+        if (printCost) { console.log(`[${curNumOfAttempts}] Current cost: ${Math.max(...curStates.map(state  => state.totalHeuristicCost))}`);}
         for (let index = 0; index < curStates.length; index++) {
 
             // Copy current state and make the best move 
@@ -46,6 +49,8 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
         }
          ++curNumOfAttempts;
     };
+    if (printCost) { console.log(`[${curNumOfAttempts}] Current cost: ${Math.max(...curStates.map(state  => state.totalHeuristicCost))}`);}
+
 
     // Find the closest state to the solutions (the one with miimum heuritic)
     let closestStateToSolutions = [[curStates[0], 0]];

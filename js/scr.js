@@ -1,3 +1,4 @@
+var printCost = false;
 //
 // Include files with algorithm functions
 //
@@ -11,7 +12,7 @@ function setUp2() {
   ];
   for (i = 0; i < importedFiles.length; i++) {
     let imported = document.createElement("script");
-    imported.src = "algorithms/" + importedFiles[i];
+    imported.src = "js/algorithms/" + importedFiles[i];
     document.head.appendChild(imported);
   }
 }
@@ -31,7 +32,7 @@ window.onload = function () {
       //   el.style.visibility = "visible";
       el.classList.remove("opacity");
     }
-
+    printCost = !!document.getElementById("logInfo").checked ? true : false;
     document.getElementById("info").textContent = "Solving...";
     document.getElementById("time").textContent = "";
     let boards = document.getElementById("chessBoardContainer");
@@ -112,7 +113,7 @@ function Calculte() {
   switch (algorithm) {
     case "hill-climbing":
       start = performance.now();
-      [result, cost] = hillClimbing(N, maxAttempts);
+      [result, cost] = hillClimbing(N, maxAttempts, printCost);
       end = performance.now();
       break;
     case "simulated-annealing":
@@ -125,14 +126,15 @@ function Calculte() {
         N,
         maxAttempts,
         startingTemperature,
-        coolingFactor
+        coolingFactor,
+        printCost
       );
       end = performance.now();
       break;
     case "local-beam-search":
       nrOfStates = document.getElementById("nrOfStates").value;
       start = performance.now();
-      [result, cost] = localBeamSearch(N, maxAttempts, nrOfStates);
+      [result, cost] = localBeamSearch(N, maxAttempts, nrOfStates, printCost);
       end = performance.now();
       break;
     case "genetic-algorithm":
@@ -152,7 +154,8 @@ function Calculte() {
         percentOfElitism,
         crossoverProbability,
         mutationProbability,
-        nrOfGenerations
+        nrOfGenerations,
+        printCost
       );
       end = performance.now();
       break;
