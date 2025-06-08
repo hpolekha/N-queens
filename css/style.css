@@ -60,7 +60,7 @@ input[type="text"] {
 }
 
 .centerDiv.panel {
-  align-items: end;
+  align-items: center;
 
   max-width: fit-content;
   padding-top: 35px;
@@ -107,7 +107,8 @@ input[type="text"] {
 }
 #run-btn:hover {
   transform: scale(1.1, 1.1);
-  color: rgb(116, 236, 228);
+  /* color: rgb(116, 236, 228); */
+  color: darkcyan;
 }
 
 #algorithmInfoContaineer {
@@ -216,7 +217,7 @@ nav {
 .borderContainerWrapp {
     /* margin-left: 3px;
     margin-right: 3px; */
-    margin-bottom: 5px;
+    margin-bottom: 25px;
 }
 
 
@@ -230,4 +231,19 @@ nav {
 
 #chessBoardContainer.opacity {
     opacity: 0.4;
+}
+
+#time {
+    font-size: 0.9em;
+    margin: 10px 10px;
+}
+
+.correct {
+    color: darkgreen;
+    font-weight: 500;
+}
+
+.wrong {
+    color: crimson;
+    /* font-weight: 500; */
 }

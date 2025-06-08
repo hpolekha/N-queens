@@ -28,11 +28,12 @@ window.onload = function () {
     }
 
     function showDiv(el) {
-    //   el.style.visibility = "visible";
+      //   el.style.visibility = "visible";
       el.classList.remove("opacity");
     }
 
     document.getElementById("info").textContent = "Solving...";
+    document.getElementById("time").textContent = "";
     let boards = document.getElementById("chessBoardContainer");
     // boards.style.visibility = "hidden";
     hideDiv(boards);
@@ -105,25 +106,34 @@ function Calculte() {
 
   // Calculate new board
   let result;
+  let cost;
+  let start;
+  let end;
   switch (algorithm) {
     case "hill-climbing":
+      start = performance.now();
       [result, cost] = hillClimbing(N, maxAttempts);
+      end = performance.now();
       break;
     case "simulated-annealing":
       startingTemperature = document.getElementById(
         "startingTemperature"
       ).value;
       coolingFactor = document.getElementById("coolingFactor").value;
+      start = performance.now();
       [result, cost] = simulatedAnnealing(
         N,
         maxAttempts,
         startingTemperature,
         coolingFactor
       );
+      end = performance.now();
       break;
     case "local-beam-search":
       nrOfStates = document.getElementById("nrOfStates").value;
+      start = performance.now();
       [result, cost] = localBeamSearch(N, maxAttempts, nrOfStates);
+      end = performance.now();
       break;
     case "genetic-algorithm":
       sizeOfGeneration = document.getElementById("sizeOfGeneration").value;
@@ -134,6 +144,7 @@ function Calculte() {
       mutationProbability =
         document.getElementById("mutationProbability").value / 100;
       nrOfGenerations = document.getElementById("nrOfGenerations").value;
+      start = performance.now();
       [result, cost] = geneticAlgorithms(
         N,
         maxAttempts,
@@ -143,6 +154,7 @@ function Calculte() {
         mutationProbability,
         nrOfGenerations
       );
+      end = performance.now();
       break;
     default:
       alert("cheating :)");
@@ -150,6 +162,9 @@ function Calculte() {
   }
   // Draw calculated board
   drawQueens2(result, N, cost);
+  document.getElementById("time").textContent = `Execution time: ${(
+    end - start
+  ).toFixed(2)} ms`;
 }
 
 //
@@ -289,12 +304,20 @@ function drawQueens1(result, cellsInRow, cost) {
   boardContainerID = "boardContainer1";
   let queen_ImgSrc = "img/queen.png";
   drawQueens(result, cellsInRow, boardContainerID, queen_ImgSrc);
-  document.getElementById("cost1").textContent = cost;
+  document.getElementById(
+    "cost1"
+  ).innerHTML = `Attacking pairs: <span class="text-color ${
+    cost === 0 ? "correct" : "wrong"
+  }">${cost}</span>`;
 }
 
 function drawQueens2(result, cellsInRow, cost) {
   boardContainerID = "boardContainer2";
   let queen_ImgSrc = "img/queen.png";
   drawQueens(result, cellsInRow, boardContainerID, queen_ImgSrc);
-  document.getElementById("cost2").textContent = cost;
+  document.getElementById(
+    "cost2"
+  ).innerHTML = `Attacking pairs: <span class="text-color ${
+    cost === 0 ? "correct" : "wrong"
+  }">${cost}</span>`;
 }

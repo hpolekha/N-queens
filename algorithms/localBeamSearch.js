@@ -11,7 +11,7 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
 
         // Check if we were lucky
         if (curStates[index].totalHeuristicCost == 0) {
-            document.getElementById('info').textContent = "Success";
+            document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
             console.log("Lucky Success. Used attempts: " + curNumOfAttempts);
             drawQueens1(curStates[index].board, N, curStates[index].totalHeuristicCost);
             return [curStates[index].board, curStates[index].totalHeuristicCost];
@@ -33,7 +33,7 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
             
             // Check if we have a solution
             if (newState.totalHeuristicCost == 0) {
-                document.getElementById('info').textContent = "Success";
+                document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
                 console.log("Success. Used attempts: " + curNumOfAttempts);
                 drawQueens1((copyOfInicializedStates[index]).board, N, (copyOfInicializedStates[index]).totalHeuristicCost);
                 return [newState.board, newState.totalHeuristicCost];
@@ -51,7 +51,7 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
     let closestStateToSolutions = [[curStates[0], 0]];
     curStates.forEach(function (curState, index) {
         if (curState.totalHeuristicCost == 0) {
-            document.getElementById('info').textContent = "Success";
+            document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
             console.log("Success. Used attempts: " + curNumOfAttempts);
             drawQueens1((copyOfInicializedStates[index]).board, N, (copyOfInicializedStates[index]).totalHeuristicCost);
             return [curState.board, curState.totalHeuristicCost]
@@ -68,7 +68,7 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
     if (closestStateToSolutions.length > 1) {
         closestStateToSolution = closestStateToSolutions[Math.floor(Math.random() * closestStateToSolutions.length)]
     }
-    document.getElementById('info').textContent = "Not enough attempts";
+    document.getElementById("info").innerHTML = '<span class="wrong">Not enough attempts</span>';
     console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);
 
     drawQueens1((copyOfInicializedStates[closestStateToSolution[1]]).board, N, (copyOfInicializedStates[closestStateToSolution[1]]).totalHeuristicCost);

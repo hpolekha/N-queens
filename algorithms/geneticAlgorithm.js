@@ -85,7 +85,7 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
         let tmpState = new State(N);
         // Check if we were lucky
         if (tmpState.totalHeuristicCost == 0) {
-            document.getElementById('info').textContent = "Success";
+            document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
             console.log("Lucky Success. Used attempts: " + curNumOfAttempts);
             drawQueens1(tmpState.board, N, tmpState.totalHeuristicCost);
             return [tmpState.board, tmpState.totalHeuristicCost];
@@ -112,7 +112,7 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
 
         // Check if the solution was found
         if (curPopulation[0].totalHeuristicCost == 0) {
-            document.getElementById('info').textContent = "Success";
+            document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
             console.log("Success. Used attempts: " + curNumOfAttempts);
             console.log('success return heuristic: ' + curPopulation[0].totalHeuristicCost);
             return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];
@@ -134,7 +134,7 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
             // if the best heuristic is the same
 
             if(--numberOfAllowedSameValues < 0) {
-                document.getElementById('info').textContent = "Local minimum riched";
+                document.getElementById("info").innerHTML = '<span class="wrong">Local minimum riched</span>';
                 console.log("Local minimum riched. Used attempts: " + curNumOfAttempts);
                 return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];
             }
@@ -181,7 +181,7 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
         return A.totalHeuristicCost - B.totalHeuristicCost;
     });
 
-    document.getElementById('info').textContent = "Not enough attempts";
+    document.getElementById("info").innerHTML = '<span class="wrong">Not enough attempts</span>';
     console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);
 
     return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];

@@ -10,7 +10,7 @@ function hillClimbing(N, maxNumOfAttempts){
 
     // Check if we were lucky
     if (curState.totalHeuristicCost == 0) {
-        document.getElementById('info').textContent = "Success";
+        document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
         console.log("Lucky Success. Used attempts: " + curNumOfAttempts);
         return [curState.board, curState.totalHeuristicCost];
     }
@@ -33,10 +33,10 @@ function hillClimbing(N, maxNumOfAttempts){
 
     // Check if the solution has been found and update the information
     if (curState.totalHeuristicCost == 0) {
-        document.getElementById('info').textContent = "Success";
+        document.getElementById("info").innerHTML = '<span class="correct">Success</span>';
         console.log("Success. Used attempts: " + curNumOfAttempts);
     } else {
-        document.getElementById('info').textContent = "Not enough attempts";
+        document.getElementById("info").innerHTML = '<span class="wrong">Not enough attempts</span>';
         console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);
     }
 
