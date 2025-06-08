@@ -16,7 +16,7 @@ input[type="text"] {
     height: 496px; */
   position: relative;
   float: left;
-  margin: 8px 5px;
+  margin: 8px 7px;
   box-shadow: 0 0 5px #495c574d;
   /* margin: 8px 10px; */
   box-shadow: 0 0 2px #495c57;
@@ -57,13 +57,14 @@ input[type="text"] {
   text-align: center;
   flex-direction: column;
   justify-content: start;
-  padding-top: 35px;
 }
 
 .centerDiv.panel {
   align-items: end;
 
   max-width: fit-content;
+  padding-top: 35px;
+
 }
 .centerDiv.board {
     flex: 1;
@@ -210,6 +211,12 @@ nav {
 }
 .borderContainerWrapp2 {
   /* float: right; */
+}
+
+.borderContainerWrapp {
+    /* margin-left: 3px;
+    margin-right: 3px; */
+    margin-bottom: 5px;
 }
 
 
