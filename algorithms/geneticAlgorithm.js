@@ -87,12 +87,12 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
         if (tmpState.totalHeuristicCost == 0) {
             document.getElementById('info').textContent = "Success";
             console.log("Lucky Success. Used attempts: " + curNumOfAttempts);
-            drawQueens1(tmpState.board, N);
-            return tmpState.board;
+            drawQueens1(tmpState.board, N, tmpState.totalHeuristicCost);
+            return [tmpState.board, tmpState.totalHeuristicCost];
         }
         curPopulation.push(tmpState);
     };
-    drawQueens1(curPopulation[0].board, N);
+    drawQueens1(curPopulation[0].board, N, curPopulation[0].totalHeuristicCost);
 
 
 
@@ -115,7 +115,7 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
             document.getElementById('info').textContent = "Success";
             console.log("Success. Used attempts: " + curNumOfAttempts);
             console.log('success return heuristic: ' + curPopulation[0].totalHeuristicCost);
-            return curPopulation[0].board;
+            return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];
         }
 
         // New population 
@@ -136,7 +136,7 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
             if(--numberOfAllowedSameValues < 0) {
                 document.getElementById('info').textContent = "Local minimum riched";
                 console.log("Local minimum riched. Used attempts: " + curNumOfAttempts);
-                return curPopulation[0].board;
+                return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];
             }
             // if number of alloved Same values is not surpassed - clonning
             if (numberOfAllowedSameValues > 0.5 * 0.25 * maxNumOfAttempts) {
@@ -184,6 +184,7 @@ function geneticAlgorithms(N, maxNumOfAttempts, sizeOfGeneration, percentOfEliti
     document.getElementById('info').textContent = "Not enough attempts";
     console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);
 
-    return curPopulation[0].board;
+    return [curPopulation[0].board, curPopulation[0].totalHeuristicCost];
+
 }
 

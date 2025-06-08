@@ -1,0 +1,226 @@
+html,
+body {
+  height: 100%;
+}
+
+input[type="text"] {
+  width: 150px;
+  /* width: 250px; */
+}
+
+#boardContainer1,
+#boardContainer2 {
+  width: 400px;
+  height: 400px;
+  /* width: 496px;
+    height: 496px; */
+  position: relative;
+  float: left;
+  margin: 8px 5px;
+  box-shadow: 0 0 5px #495c574d;
+  /* margin: 8px 10px; */
+  box-shadow: 0 0 2px #495c57;
+}
+
+#chessBoardContainer {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+/* #chessBoardContainer {
+    position: relative;
+    float: left;
+} */
+#algorithmInfoContaineer {
+  padding: 7px;
+}
+#simulatedAnnealingContainer,
+#localBeamContainer,
+#geneticContainer {
+  display: none;
+}
+
+#chessBoardContainer img {
+  position: absolute;
+}
+
+* {
+  font-size: 20px;
+  /* display: block;q */
+}
+.centerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  justify-content: start;
+  padding-top: 35px;
+}
+
+.centerDiv.panel {
+  align-items: end;
+
+  max-width: fit-content;
+}
+.centerDiv.board {
+    flex: 1;
+}
+
+@media only screen and (max-width: 995px) {
+  #chessBoardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+}
+
+#mainContainer {
+  margin-top: 60px;
+}
+
+#algorithmInfoContaineer div {
+  /* centerDiv class */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+#algorithmInfoContaineer div.visibleAlg {
+  /* centerDiv class */
+  display: flex;
+}
+
+/* do it */
+#run-btn {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  transition: 0.5s;
+  outline: none;
+  box-shadow: none;
+}
+#run-btn:hover {
+  transform: scale(1.1, 1.1);
+  color: rgb(116, 236, 228);
+}
+
+#algorithmInfoContaineer {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  /* background-color: rgb(250, 221, 142); */
+  /* background-color: coral; */
+  /* background-color: #badac9d4; */
+  /*#badac9; */
+  /* background-image: linear-gradient(45deg, rgb(255, 127, 80), rgb(255, 182, 155)); */
+  min-height: 100vh;
+  background-image: url(../img/interface/background.png);
+  background-position: center;
+}
+
+/* h1.title {
+    text-align: center;
+    font-family: 'Charm';
+} */
+
+hr {
+  width: 50%;
+}
+
+#mainRow {
+    display: flex;
+  border-radius: 10px;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  background-color: #ffffff6e;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 20px #a1cacb63;
+  flex-wrap: nowrap;
+  padding: 20px;
+}
+
+#info {
+  border-bottom: 3px solid snow;
+  font-size: 23px;
+}
+
+* {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+nav {
+  /* background-color: #ffffffa3; */
+  background-color: #ffffff6e;
+  box-shadow: 0px 0px 20px #b4b3b34d;
+  top: -100px;
+  top: 15px;
+  z-index: 1000;
+  /* position: sticky; */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.ww2 {
+  background-color: peachpuff;
+  background-color: #feceb7;
+  background-color: #fae5d0;
+}
+.bb2 {
+  background-color: coral;
+  background-color: #ae6f5d;
+  background-color: #ae6f5dd4;
+}
+
+.ww1 {
+  /* background-color: coral;
+  background-color: #fae5d0;
+  background-color: #f39db6;
+  background-color: #f6d2d6;
+  background-color: #c2c2c2; */
+  background-color: #ffd7e8cc;
+  background-color: #fbe5f7cc;
+  background-color: #fae7ffcc;
+}
+.bb1 {
+  /* background-color: crimson;
+  background-color: #ae6f5d;
+  background-color: #6a4162;
+  background-color: #d46a92; */
+  background-color: #797687;
+  background-color: #c9c1d2cf;
+  background-color: #bebebeeb;
+}
+
+.borderContainerWrapp1 {
+  /* float: left; */
+  /* position: relative; */
+}
+.borderContainerWrapp2 {
+  /* float: right; */
+}
+
+
+@media (min-width: 1200px) {
+
+    .container {
+        max-width: 1340px;
+    }
+
+}
+
+#chessBoardContainer.opacity {
+    opacity: 0.4;
+}

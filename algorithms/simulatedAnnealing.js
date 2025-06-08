@@ -6,13 +6,13 @@ function simulatedAnnealing(N, maxNumOfAttempts, startingTemperature, coolingFac
 
     // Generate start state
     let curState = new State(N);
-    drawQueens1(curState.board, N);
+    drawQueens1(curState.board, N,curState.totalHeuristicCost);
 
     //Check if we were lucky
     if (curState.totalHeuristicCost == 0) {
         document.getElementById('info').textContent = "Success";
         console.log("Lucky Success. Used attempts: " + curNumOfAttempts);
-        return curState.board;
+        return [curState.board, curState.totalHeuristicCost];
     }
 
     while (curState.totalHeuristicCost != 0 && curNumOfAttempts < maxNumOfAttempts) {
@@ -38,7 +38,7 @@ function simulatedAnnealing(N, maxNumOfAttempts, startingTemperature, coolingFac
         document.getElementById('info').textContent = "Not enough attempts";
         console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);
     }
-    return curState.board;
+    return [curState.board, curState.totalHeuristicCost];
 }
 
 

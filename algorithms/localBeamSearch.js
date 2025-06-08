@@ -13,8 +13,8 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
         if (curStates[index].totalHeuristicCost == 0) {
             document.getElementById('info').textContent = "Success";
             console.log("Lucky Success. Used attempts: " + curNumOfAttempts);
-            drawQueens1(curStates[index].board, N);
-            return curStates[index].board;
+            drawQueens1(curStates[index].board, N, curStates[index].totalHeuristicCost);
+            return [curStates[index].board, curStates[index].totalHeuristicCost];
         }
     };
 
@@ -35,8 +35,8 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
             if (newState.totalHeuristicCost == 0) {
                 document.getElementById('info').textContent = "Success";
                 console.log("Success. Used attempts: " + curNumOfAttempts);
-                drawQueens1((copyOfInicializedStates[index]).board, N);
-                return newState.board;
+                drawQueens1((copyOfInicializedStates[index]).board, N, (copyOfInicializedStates[index]).totalHeuristicCost);
+                return [newState.board, newState.totalHeuristicCost];
             }
             
             // Accept the state only if we have better heuristic
@@ -53,8 +53,8 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
         if (curState.totalHeuristicCost == 0) {
             document.getElementById('info').textContent = "Success";
             console.log("Success. Used attempts: " + curNumOfAttempts);
-            drawQueens1((copyOfInicializedStates[index]).board, N);
-            return curState.board
+            drawQueens1((copyOfInicializedStates[index]).board, N, (copyOfInicializedStates[index]).totalHeuristicCost);
+            return [curState.board, curState.totalHeuristicCost]
         } else if (curState.totalHeuristicCost < closestStateToSolutions[0].totalHeuristicCost) {
             closestStateToSolutions = [[curState, index]];
         } else if (curState.totalHeuristicCost < closestStateToSolutions[0].totalHeuristicCost) {
@@ -71,8 +71,8 @@ function localBeamSearch(N, maxNumOfAttempts, nrOfStates) {
     document.getElementById('info').textContent = "Not enough attempts";
     console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);
 
-    drawQueens1((copyOfInicializedStates[closestStateToSolution[1]]).board, N);
-    return closestStateToSolution[0].board;
+    drawQueens1((copyOfInicializedStates[closestStateToSolution[1]]).board, N, (copyOfInicializedStates[closestStateToSolution[1]]).totalHeuristicCost);
+    return [closestStateToSolution[0].board, closestStateToSolution[0].totalHeuristicCost];
 }
 
 

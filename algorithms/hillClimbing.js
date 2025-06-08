@@ -6,13 +6,13 @@ function hillClimbing(N, maxNumOfAttempts){
 
     // Generate new state and draw it
     let curState = new State(N);
-    drawQueens1(curState.board, N);
+    drawQueens1(curState.board, N, curState.totalHeuristicCost);
 
     // Check if we were lucky
     if (curState.totalHeuristicCost == 0) {
         document.getElementById('info').textContent = "Success";
         console.log("Lucky Success. Used attempts: " + curNumOfAttempts);
-        return curState.board;
+        return [curState.board, curState.totalHeuristicCost];
     }
    
 
@@ -40,7 +40,7 @@ function hillClimbing(N, maxNumOfAttempts){
         console.log("Not enough attempts. Used attempts: " + curNumOfAttempts);
     }
 
-    return curState.board;
+    return [curState.board, curState.totalHeuristicCost];
 }
 
 

@@ -1,94 +1,185 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    
-    <link href='https://fonts.googleapis.com/css?family=Charm' rel='stylesheet'>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <link
+      href="https://fonts.googleapis.com/css?family=Charm"
+      rel="stylesheet"
+    /> -->
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <script src="scr.js"></script>
     <!-- <script src="hillClimbing.js"></script> -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
-  
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
+  </head>
 
-<body>
+  <body>
+    <nav>
+      <div><img src="./img/interface/title2.png" height="50" /></div>
+      <!-- <h1 class="title animate__animated animate__flipInX">N Queen Problem</h1> -->
+    </nav>
     <div class="container" id="mainContainer">
-            <h1 class="animate__animated animate__flipInX">N Queen Problem</h1>
-            <hr>
-            <div class="row animate__animated animate__backInUp" id="mainRow">
-                <div class="col-xl-9 centerDiv">
-                    <div id="chessBoardContainer">
-                            <div id="boardContainer1"></div>
-                            <div id="boardContainer2"></div>
-                    </div>
-                </div>
+      <!-- <h1 class="title animate__animated animate__flipInX">N Queen Problem</h1> -->
+      <!-- <hr /> -->
+      <div class="animate__animated animate__backInUp" id="mainRow">
+        <div class="centerDiv board">
+          <div id="chessBoardContainer" class="animate__animated">
+            <div class="borderContainerWrapp">
+              <div>Initial state</div>
+              <div id="boardContainer1"></div>
+              <div>Attacking pairs: <span id="cost1"></span></div>
+            </div>
+            <div class="borderContainerWrapp">
+              <div>Solution</div>
+              <div id="boardContainer2"></div>
+              <div>Attacking pairs: <span id="cost2"></span></div>
 
-                <div class="col-xl-3 centerDiv">
-                    <div id="algorithmInfoContaineer">
-                        <div class="visibleAlg">
-                            <label for="algorithms">Choose an local search algorithm:</label>
-                            <select id="algorithms" class="form-control">
-                                <option value="hill-climbing">Hill-climbing</option>
-                                <option value="simulated-annealing">Simulated Annealing</option>
-                                <option value="local-beam-search">Local Beam Search</option>
-                                <option value="genetic-algorithm">Genetic Algorithm</option>
-                            </select>
+            </div>
+          </div>
+        </div>
 
-                            <label for="cellsInRow">Cells in row:</label>
-                            <input type="range" id="cellsInRow" min="4" max="12" value="9" style="margin-bottom: 5px; width: 60%;">
-                            <input type="number" id="cellsInRowInfo" min="4" max="12"  class="form-control">
+        <div class="centerDiv panel">
+          <div id="algorithmInfoContaineer">
+            <div class="visibleAlg">
+              <label for="algorithms">Choose an local search algorithm:</label>
+              <select id="algorithms" class="form-control">
+                <option value="hill-climbing">Hill-climbing</option>
+                <option value="simulated-annealing">Simulated Annealing</option>
+                <option value="local-beam-search">Local Beam Search</option>
+                <option value="genetic-algorithm">Genetic Algorithm</option>
+              </select>
 
-                            <label for="maxAttempts">MaxAttempts per problem:</label>
-                            <input id="maxAttempts" type="number" min="1" value="500" class="form-control"/>
-                        </div>
-                        <div id='simulatedAnnealingContainer'>
-                            <label for="startingTemperature">Starting temperature:</label>
-                            <input id="startingTemperature" type="number" min="0" value="10000" class="form-control"/>
+              <label for="cellsInRow">Cells in row:</label>
+              <input
+                type="range"
+                id="cellsInRow"
+                min="4"
+                max="50"
+                value="9"
+                style="margin-bottom: 5px; width: 60%"
+              />
+              <input
+                type="number"
+                id="cellsInRowInfo"
+                min="4"
+                max="50"
+                class="form-control"
+              />
 
-                            <label for="coolingFactor">Cooling factor:</label>
-                            <input id="coolingFactor" type="number" min="1" value="1" class="form-control"/>
-                        </div>
-                        <div id='localBeamContainer'>
-                            <label for="nrOfStates">Number of states:</label>
-                            <input id="nrOfStates" type="number" min="1" value="15" class="form-control"/>
-                        </div>
-                        <div id='geneticContainer'>
-                            <label for="sizeOfGeneration">Size of a single generation:</label>
-                            <input id="sizeOfGeneration" type="number" min="1" value="100" class="form-control"/>
+              <label for="maxAttempts">MaxAttempts per problem:</label>
+              <input
+                id="maxAttempts"
+                type="number"
+                min="1"
+                value="500"
+                class="form-control"
+              />
+            </div>
+            <div id="simulatedAnnealingContainer">
+              <label for="startingTemperature">Starting temperature:</label>
+              <input
+                id="startingTemperature"
+                type="number"
+                min="0"
+                value="10000"
+                class="form-control"
+              />
 
-                            <label for="percentOfElitism">Percent of elitism,:</label>
-                            <input id="percentOfElitism" type="number" min="1" value="20" class="form-control"/>
+              <label for="coolingFactor">Cooling factor:</label>
+              <input
+                id="coolingFactor"
+                type="number"
+                min="1"
+                value="1"
+                class="form-control"
+              />
+            </div>
+            <div id="localBeamContainer">
+              <label for="nrOfStates">Number of states:</label>
+              <input
+                id="nrOfStates"
+                type="number"
+                min="1"
+                value="15"
+                class="form-control"
+              />
+            </div>
+            <div id="geneticContainer">
+              <label for="sizeOfGeneration">Size of a single generation:</label>
+              <input
+                id="sizeOfGeneration"
+                type="number"
+                min="1"
+                value="100"
+                class="form-control"
+              />
 
-                            <label for="crossoverProbability">Crossover probability:</label>
-                            <input id="crossoverProbability" type="number" min="1" value="35" class="form-control"/>
+              <label for="percentOfElitism">Percent of elitism,:</label>
+              <input
+                id="percentOfElitism"
+                type="number"
+                min="1"
+                value="20"
+                class="form-control"
+              />
 
-                            <label for="mutationProbability">Mutation probability:</label>
-                            <input id="mutationProbability" type="number" min="1" value="5" class="form-control"/>
+              <label for="crossoverProbability">Crossover probability:</label>
+              <input
+                id="crossoverProbability"
+                type="number"
+                min="1"
+                value="35"
+                class="form-control"
+              />
 
-                            <label for="nrOfGenerations">Number of generations:</label>
-                            <input id="nrOfGenerations" type="number" min="1" value="1000" class="form-control"/>
-                        </div>
+              <label for="mutationProbability">Mutation probability:</label>
+              <input
+                id="mutationProbability"
+                type="number"
+                min="1"
+                value="5"
+                class="form-control"
+              />
 
-                        <div class="visibleAlg"></div><input type="button" id="my-btn" value="do it!" class="form-control"></div>
-                        <div class="visibleAlg"><span id="info"></span></div>
-                    </div>
-                </div>
-                <!-- <div id = chessBoardInfoContainer>
+              <label for="nrOfGenerations">Number of generations:</label>
+              <input
+                id="nrOfGenerations"
+                type="number"
+                min="1"
+                value="1000"
+                class="form-control"
+              />
+            </div>
+
+            <div class="visibleAlg">
+              <input
+                type="button"
+                id="run-btn"
+                value="do it!"
+                class="form-control"
+              />
+            </div>
+            <div class="visibleAlg"><span id="info"></span></div>
+          </div>
+        </div>
+        <!-- <div id = chessBoardInfoContainer>
                     <label for="boardContainer">Inicialized state</label>
                     <label for="boardContainer2">Result state</label>
                 </div> -->
-                
-            </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
