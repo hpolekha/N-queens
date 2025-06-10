@@ -24,6 +24,7 @@ this.setUp2();
 window.onload = function () {
   // Button
   document.getElementById("run-btn").addEventListener("click", function () {
+    document.getElementById("run-btn").disabled = true;
     function hideDiv(el) {
       el.classList.add("opacity");
     }
@@ -39,6 +40,7 @@ window.onload = function () {
     setTimeout(() => {
       Calculte();
       showDiv(boards);
+    document.getElementById("run-btn").disabled = false;
     }, 300);
   });
 
@@ -79,7 +81,9 @@ window.onload = function () {
         localBeamContainer.style.display = "flex";
         break;
       case "genetic-algorithm":
-        document.getElementById('maxAttempts').value = 1000;
+        // document.getElementById('maxAttempts').value = 1000;
+        document.getElementById('maxAttempts').value = 400;
+
         geneticContainer.style.display = "flex";
         break;
     }
@@ -163,6 +167,7 @@ function Calculte() {
   }
   // Draw calculated board
   drawQueens2(result, N, cost);
+  console.log('Execution time:', (((end - start).toFixed(2)) / 1000).toFixed(3));
   document.getElementById("time").textContent = `Execution time: ${(
     end - start
   ).toFixed(2)} ms`;
